@@ -460,7 +460,7 @@
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
-      position: relative; /* for featured badge */
+      position: relative;
       line-height: 1.5;
       transition:
         background-color 150ms ease,
@@ -472,22 +472,6 @@
     .event-row.featured {
       border-color: var(--accent);
       background: radial-gradient(circle at left, var(--accent-soft), var(--card-soft));
-    }
-
-    /* FEATURED badge anchor top-left */
-    .event-row.featured::before {
-      content: "Featured";
-      position: absolute;
-      top: 7px;
-      left: 9px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #050509;
-      font-weight: 700;
     }
 
     .event-row:hover {
@@ -502,6 +486,25 @@
       border-color: rgba(249,115,22,0.7);
       box-shadow: 0 14px 32px rgba(0,0,0,0.75);
       transform: translateY(-1px);
+    }
+
+    /* NEW: featured meta row (badge + category) */
+    .event-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2px;
+    }
+
+    .badge-featured {
+      padding: 2px 6px;
+      border-radius: 999px; /* pill shape */
+      background: var(--accent);
+      color: #050509;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
     .tag {
@@ -724,7 +727,10 @@
           <div class="group-label">Tonight’s picks</div>
 
           <div class="event-row featured">
-            <div class="tag">♪ Music · Downtown</div>
+            <div class="event-meta">
+              <span class="badge-featured">Featured</span>
+              <span class="tag">♪ Music · Downtown</span>
+            </div>
             <div class="title-sm">Utah Jazz vs. [Opponent]</div>
             <div class="meta-sm">
               7:00 PM · Delta Center · 301 W South Temple · NBA game (doors 6:00 PM)
