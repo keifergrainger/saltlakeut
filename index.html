@@ -11,34 +11,43 @@
 
   <style>
   :root {
-    /* Dark city-night background */
-    --bg: #050816;
-    --bg-soft: #020617;
+    /* Background */
+    --bg: #050506;
+    --bg-soft: #0A0A0C;
+    --bg-highlight: #111119;
 
     /* Cards & surfaces */
-    --card-bg: #0B1220;
-    --card-elevated: #0F172A;
-    --border-subtle: #1E293B;
+    --card-bg: #101014;
+    --card-elevated: #15151B;
+    --border-subtle: #26262F;
 
     /* Text */
-    --text-main: #F9FAFB;
-    --text-muted: #9CA3AF;
+    --text-main: #F5F5F5;
+    --text-muted: #A3A3A3;
 
-    /* Primary accent – warm amber/orange */
-    --accent: #F97316;
-    --accent-soft: #2B1708;
-    --accent-hover: #EA580C;
-    --accent-border: rgba(249, 115, 22, 0.6);
+    /* Black & tan accent */
+    --accent: #F4D28B;      /* main tan */
+    --accent-hover: #E5C374;
+    --accent-soft: #2B2416; /* subtle tan-tinted background */
+    --accent-border: rgba(244, 210, 139, 0.7);
 
-    /* Status colors (if needed) */
+    /* Status (rare) */
     --success: #22C55E;
     --danger: #F97373;
+
+    /* Extra tokens */
+    --topbar-bg: #020203;
+    --topbar-border: #141418;
+    --footer-bg: #050507;
+    --footer-border: #181820;
+    --hero-tag-bg: #15151D;
+    --ticker-chip-bg: #08080C;
   }
 
   body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: radial-gradient(circle at top, #111827 0, var(--bg) 55%);
+    background: radial-gradient(circle at top, var(--bg-highlight) 0, var(--bg) 55%);
     color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
@@ -60,14 +69,14 @@
     padding: 1.5rem 1.5rem 2.5rem;
   }
 
-  /* Top live ticker bar */
+  /* Header + top ticker bar */
   header {
     position: sticky;
     top: 0;
     z-index: 20;
     backdrop-filter: blur(18px);
-    background: rgba(3, 7, 18, 0.96);
-    border-bottom: 1px solid #111827;
+    background: rgba(5, 5, 8, 0.95);
+    border-bottom: 1px solid var(--topbar-border);
     margin: -20px -16px 22px;
   }
 
@@ -79,7 +88,10 @@
   }
 
   .top-ticker {
-    border-bottom: 1px solid #111827;
+    background: var(--topbar-bg);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--topbar-border);
   }
 
   .ticker-label {
@@ -93,8 +105,8 @@
     color: var(--text-muted);
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
-    background: #020617;
-    border: 1px solid #111827;
+    background: var(--ticker-chip-bg);
+    border: 1px solid var(--border-subtle);
     white-space: nowrap;
     overflow: hidden;
   }
@@ -118,6 +130,7 @@
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    background: var(--bg-soft);
   }
 
   @media (max-width: 820px) {
@@ -167,7 +180,7 @@
     flex-wrap: wrap;
   }
 
-  /* Primary buttons */
+  /* Buttons */
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -177,11 +190,11 @@
     border-radius: 999px;
     border: none;
     background: var(--accent);
-    color: #0B0B0B;
+    color: #181818;
     font-weight: 600;
     font-size: 0.8rem;
     cursor: pointer;
-    box-shadow: 0 0 0 1px var(--accent-border), 0 12px 28px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 1px 0 var(--accent-border), 0 10px 24px rgba(0, 0, 0, 0.55);
   }
 
   .btn-primary:hover {
@@ -207,7 +220,7 @@
     color: var(--accent);
   }
 
-  /* Hero card */
+  /* HERO (card) */
   .hero {
     position: relative;
     border-radius: 18px;
@@ -215,7 +228,7 @@
     background: linear-gradient(to bottom right, var(--card-bg), var(--card-elevated));
     border: 1px solid var(--border-subtle);
     padding: 1.5rem 1.5rem 1.1rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
     margin-bottom: 1.5rem;
     isolation: isolate;
     min-height: 220px;
@@ -231,9 +244,9 @@
     background-image: url("https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1600");
     background-size: cover;
     background-position: center;
-    opacity: 0.45;
-    transform: scale(1.05);
-    filter: contrast(1.05) saturate(1.05);
+    opacity: 0.4;
+    transform: scale(1.04);
+    filter: contrast(1.03) saturate(1.03);
     z-index: -2;
   }
 
@@ -242,8 +255,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.45), transparent 60%),
-      linear-gradient(to top, rgba(5, 6, 18, 0.98), rgba(5, 6, 18, 0.7), transparent);
+      radial-gradient(circle at bottom right, rgba(244, 210, 139, 0.22), transparent 60%),
+      linear-gradient(to top, rgba(5, 5, 8, 0.96), rgba(5, 5, 8, 0.7), transparent);
     z-index: -1;
   }
 
@@ -262,7 +275,7 @@
   .hero-tag {
     font-size: 0.75rem;
     color: var(--text-main);
-    background: rgba(15, 23, 42, 0.92);
+    background: var(--hero-tag-bg);
     padding: 0.35rem 0.8rem;
     border-radius: 999px;
     display: inline-flex;
@@ -364,20 +377,20 @@
     }
   }
 
-  /* Generic card style – used conceptually via specific classes */
+  /* Generic cards (events, local pros, neighborhoods) */
   .section-card,
   .strip-block {
     background: linear-gradient(to bottom right, var(--card-bg), var(--card-elevated));
     border-radius: 18px;
     border: 1px solid var(--border-subtle);
     padding: 1.25rem 1.5rem;
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.55);
   }
 
-  /* Events column slightly brighter to win hierarchy */
+  /* Events column given slight emphasis */
   #events.section-card {
-    background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), var(--card-bg));
-    border-color: var(--accent-border);
+    background: radial-gradient(circle at top left, rgba(244, 210, 139, 0.1), var(--card-bg));
+    border-color: var(--border-subtle);
   }
 
   .section-header {
@@ -434,13 +447,13 @@
     margin: 0.25rem 0 0.1rem;
   }
 
-  /* Event & local pro cards */
+  /* Event & local pro cards (rows) */
   .event-row,
   .biz-row {
     background: var(--card-elevated);
     border-radius: 14px;
     padding: 0.8rem 0.85rem 0.7rem;
-    border: 1px solid rgba(30, 64, 95, 0.9);
+    border: 1px solid var(--border-subtle);
     font-size: 0.85rem;
     display: flex;
     flex-direction: column;
@@ -449,28 +462,28 @@
     position: relative;
     line-height: 1.5;
     transition:
-      background-color 150ms ease,
-      border-color 150ms ease,
-      transform 150ms ease,
-      box-shadow 150ms ease;
+      background-color 140ms ease,
+      border-color 140ms ease,
+      transform 140ms ease,
+      box-shadow 140ms ease;
   }
 
   .event-row.featured {
     border-color: var(--accent-border);
-    background: radial-gradient(circle at left, rgba(249, 115, 22, 0.16), var(--card-elevated));
+    background: radial-gradient(circle at left, rgba(244, 210, 139, 0.14), var(--card-elevated));
   }
 
   .event-row:hover {
-    background-color: #111827;
+    background-color: var(--bg-soft);
     border-color: var(--accent-border);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
     transform: translateY(-1px);
   }
 
   .biz-row:hover {
-    background-color: #020617;
+    background-color: var(--bg-soft);
     border-color: var(--accent-border);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
     transform: translateY(-1px);
   }
 
@@ -486,22 +499,22 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.1rem 0.6rem;
+    padding: 0.12rem 0.6rem;
     border-radius: 999px;
     background: var(--accent);
-    color: #111827;
+    color: #181818;
     font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
-  /* Small chips / tags like FEATURED, Music, Downtown */
+  /* Tags / chips like FEATURED, Music, Downtown */
   .tag {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.1rem 0.55rem;
+    padding: 0.12rem 0.6rem;
     border-radius: 999px;
     background: var(--accent-soft);
     border: 1px solid var(--accent-border);
@@ -549,11 +562,11 @@
     }
   }
 
-  /* Neighborhood pills / strip */
+  /* Neighborhood strip */
   .strip-block {
     margin-top: 1.75rem;
-    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), var(--card-bg));
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85);
+    background: linear-gradient(to bottom right, var(--card-bg), var(--card-elevated));
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
   }
 
   .strip-title {
@@ -575,14 +588,13 @@
   }
 
   /* Neighborhood pills */
-  .pill,
   .strip-pill {
     display: inline-flex;
     align-items: center;
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
     border: 1px solid var(--border-subtle);
-    background: rgba(15, 23, 42, 0.95);
+    background: #111118;
     color: var(--text-main);
     font-size: 0.85rem;
     margin: 0.15rem 0.35rem 0.15rem 0;
@@ -594,7 +606,7 @@
     font-weight: 500;
   }
 
-  .pill-primary,
+  /* First neighborhood looks "active" / primary */
   .strip-pill:first-child {
     border-color: var(--accent-border);
     background: var(--accent-soft);
@@ -605,9 +617,8 @@
     margin-right: 0.25rem;
   }
 
-  .pill:hover,
   .strip-pill:hover {
-    background: #111827;
+    background: var(--bg-soft);
     border-color: var(--accent-border);
     transform: translateY(-1px);
   }
@@ -616,9 +627,9 @@
   footer {
     margin-top: 2.5rem;
     padding: 1.5rem 1.5rem;
-    background: #020617;
+    background: var(--footer-bg);
     color: var(--text-muted);
-    border-top: 1px solid #0F172A;
+    border-top: 1px solid var(--footer-border);
     font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
@@ -732,6 +743,7 @@
           <div class="section-title-wrap">
             <div class="section-title">Today in Salt Lake</div>
             <div class="section-sub">No plans yet? Start with these.</div>
+            <!-- optional count label could go here if wired to real data -->
           </div>
           <div class="section-link">Open full calendar →</div>
         </div>
@@ -791,7 +803,7 @@
             <div class="section-title">Need a local pro?</div>
             <div class="section-sub">Roofers, HVAC, real estate &amp; more — vetted local picks.</div>
           </div>
-        <div class="section-link">List your business →</div>
+          <div class="section-link">List your business →</div>
         </div>
 
         <div class="list">
@@ -877,4 +889,3 @@
   </script>
 </body>
 </html>
-
