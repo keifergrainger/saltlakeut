@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>SaltLakeUT.com — Salt Lake City Local Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Salt Lake City’s independent hub for events, local businesses, neighborhoods, and city life." />
+  <meta name="description" content="See what’s happening in Salt Lake City today and find trusted local services." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -180,20 +180,6 @@
       transform: translateY(-1px);
     }
 
-    /* Layout */
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(260px, 1.35fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
     /* Hero */
 
     .hero {
@@ -202,12 +188,13 @@
       background: #000;
       box-shadow: var(--shadow-soft);
       position: relative;
-      min-height: 280px;
+      min-height: 260px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 20px 22px 18px;
       isolation: isolate;
+      margin-bottom: 26px;
     }
 
     .hero::before {
@@ -258,7 +245,7 @@
       font-weight: 600;
       max-width: 520px;
       line-height: 1.2;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .hero p {
@@ -272,6 +259,7 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
     .hero-actions .btn {
@@ -279,90 +267,30 @@
     }
 
     .hero-meta {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
       font-size: 12px;
       color: var(--text-muted);
     }
 
-    .hero-chip {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(8,10,24,0.9);
-      border: 1px solid rgba(255,255,255,0.12);
+    /* Two-column main sections */
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 20px;
     }
 
-    /* Sidebar */
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .card {
+    .section-card {
       background: var(--card);
       border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
+      padding: 16px 16px 14px;
       border: 1px solid var(--border-subtle);
       box-shadow: 0 10px 28px rgba(0,0,0,0.5);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 6px;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .card-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .today-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 13px;
-    }
-
-    .today-item {
-      padding: 7px 9px;
-      border-radius: var(--radius-md);
-      background: var(--card-soft);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .today-item b {
-      font-size: 12px;
-    }
-
-    .today-item span {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .card p {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Sections */
-
-    section {
-      margin-top: 26px;
     }
 
     .section-header {
@@ -376,7 +304,7 @@
     .section-title-wrap {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .section-title {
@@ -389,52 +317,36 @@
       color: var(--text-muted);
     }
 
-    .section-tabs {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      font-size: 11px;
-    }
-
-    .section-tab {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text-muted);
+    .section-link {
+      font-size: 12px;
+      color: var(--accent);
       cursor: pointer;
     }
 
-    .section-tab.active {
-      background: var(--accent-soft);
-      border-color: rgba(255,255,255,0.06);
-      color: var(--accent);
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 10px;
-    }
-
-    .event-card,
-    .biz-card {
-      background: var(--bg-soft);
+    .event-row,
+    .biz-row {
+      background: var(--card-soft);
       border-radius: var(--radius-md);
-      padding: 10px 11px 9px;
+      padding: 9px 10px 8px;
       border: 1px solid rgba(255,255,255,0.08);
       font-size: 13px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, border 0.12s ease;
+      gap: 3px;
       cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease;
     }
 
-    .event-card:hover,
-    .biz-card:hover {
+    .event-row:hover,
+    .biz-row:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.7);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.7);
       border-color: rgba(61,168,255,0.6);
     }
 
@@ -444,8 +356,8 @@
     }
 
     .title-sm {
-      font-weight: 600;
       font-size: 13px;
+      font-weight: 600;
     }
 
     .meta-sm {
@@ -460,29 +372,50 @@
 
     /* Neighborhood strip */
 
+    .strip-block {
+      margin-top: 26px;
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+    }
+
+    .strip-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .strip-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
     .strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .strip-card {
+    .strip-pill {
       border-radius: 999px;
-      padding: 7px 11px;
-      background: var(--bg-soft);
+      padding: 6px 11px;
+      background: #090d1c;
       border: 1px solid rgba(255,255,255,0.08);
       font-size: 12px;
       color: var(--text-muted);
     }
 
-    .strip-card b {
+    .strip-pill b {
       color: var(--text-main);
     }
 
     /* Footer */
 
     footer {
-      margin-top: 28px;
+      margin-top: 26px;
       padding-top: 14px;
       border-top: 1px solid var(--border-subtle);
       font-size: 11px;
@@ -518,193 +451,131 @@
         <div class="brand-mark"><span>SL</span></div>
         <div class="brand-text">
           <h1>SaltLakeUT.com</h1>
-          <p>Local news, events &amp; businesses in Salt Lake City</p>
+          <p>See what’s happening tonight &amp; who to call when you need help.</p>
         </div>
       </div>
 
       <div class="top-buttons">
         <button class="btn btn-primary" onclick="scrollToSection('events')">
-          Submit / View Events
+          View Today’s Events
         </button>
-        <button class="btn btn-ghost" onclick="scrollToSection('businesses')">
-          List Your Business
+        <button class="btn btn-ghost" onclick="scrollToSection('services')">
+          Find a Local Pro
         </button>
       </div>
     </div>
   </header>
 
   <div class="page">
-    <div class="layout">
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero-tag">
-          <div class="hero-dot"></div>
-          <span>Salt Lake City · Utah</span>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-tag">
+        <div class="hero-dot"></div>
+        <span>Salt Lake City · Utah</span>
+      </div>
+      <h2>One clean page for what’s happening in Salt Lake City tonight.</h2>
+      <p>
+        Check today’s events in seconds, then find a trusted local service when you need a roof, HVAC repair, real estate agent, or landscaping crew.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="scrollToSection('events')">See today’s events</button>
+        <button class="btn btn-ghost" onclick="scrollToSection('services')">Browse local services</button>
+      </div>
+      <div class="hero-meta">
+        Built to be fast, simple and local — no spam, no clutter, just Salt Lake.
+      </div>
+    </section>
+
+    <!-- Main two columns -->
+    <div class="main-grid">
+      <!-- Events -->
+      <section id="events" class="section-card">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-title">Today &amp; this week in Salt Lake</div>
+            <div class="section-sub">Sample events — later pulled automatically from event feeds.</div>
+          </div>
+          <div class="section-link">View full calendar →</div>
         </div>
-        <h2>The fast, clean local hub for everything happening in Salt Lake City.</h2>
-        <p>
-          One place for events, local services, neighborhoods, and weekend ideas — built for people who actually live here, not just tourists.
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="scrollToSection('events')">View Today’s Events</button>
-          <button class="btn btn-ghost" onclick="scrollToSection('businesses')">Browse Local Services</button>
-        </div>
-        <div class="hero-meta">
-          <div class="hero-chip">Today: Events · Food · Live Music · Outdoors</div>
-          <div class="hero-chip">Neighborhoods: Downtown · Sugar House · 9th &amp; 9th · The Avenues</div>
+
+        <div class="list">
+          <div class="event-row">
+            <div class="tag">Music · Downtown</div>
+            <div class="title-sm">Utah Jazz vs. [Opponent]</div>
+            <div class="meta-sm">7:00 PM · Delta Center · 301 W South Temple, SLC · NBA game</div>
+            <div class="cta-sm">View tickets →</div>
+          </div>
+
+          <div class="event-row">
+            <div class="tag">Food &amp; drink</div>
+            <div class="title-sm">Downtown Night Market</div>
+            <div class="meta-sm">5:00 PM – 9:00 PM · Gallivan Center · Live music &amp; food trucks</div>
+            <div class="cta-sm">Details &amp; directions →</div>
+          </div>
+
+          <div class="event-row">
+            <div class="tag">Outdoors</div>
+            <div class="title-sm">Sunset Hike Meet-up</div>
+            <div class="meta-sm">6:30 PM · Bonneville Shoreline Trailhead · Casual group hike</div>
+            <div class="cta-sm">See meetup page →</div>
+          </div>
+
+          <div class="event-row">
+            <div class="tag">Family</div>
+            <div class="title-sm">Pioneer Park Farmers Market</div>
+            <div class="meta-sm">Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Local vendors &amp; coffee</div>
+            <div class="cta-sm">See vendor list →</div>
+          </div>
         </div>
       </section>
 
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Today in Salt Lake</div>
-            <div class="card-sub">Static preview — APIs later.</div>
+      <!-- Services -->
+      <section id="services" class="section-card">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-title">Local services you actually need</div>
+            <div class="section-sub">Roofing, HVAC, real estate, landscaping — city by city.</div>
           </div>
-          <div class="today-list">
-            <div class="today-item">
-              <b>Now · 32°F · Clear</b>
-              <span>Downtown &amp; valley · Cold evening commute · Light wind</span>
-            </div>
-            <div class="today-item">
-              <b>Tonight · Jazz Game</b>
-              <span>7:00 PM · Delta Center · 301 W South Temple · Doors 6:00 PM</span>
-            </div>
-            <div class="today-item">
-              <b>Weekend · Mountains</b>
-              <span>Powder watch in Cottonwood Canyons · Check resort &amp; canyon alerts</span>
-            </div>
-          </div>
+          <div class="section-link">List your business →</div>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Feature Your Business</div>
+        <div class="list">
+          <div class="biz-row">
+            <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
+            <div class="meta-sm">Roofing · Free inspections · Storm damage &amp; leaks · Salt Lake City &amp; valley</div>
+            <div class="cta-sm">Visit website →</div>
           </div>
-          <p>
-            Own a business in Salt Lake City? Reserve placement while we’re growing traffic — feature your logo, offer, and call-to-action in front of local eyes.
-          </p>
+
+          <div class="biz-row">
+            <div class="title-sm">Salt Lake HVAC Pros</div>
+            <div class="meta-sm">Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial</div>
+            <div class="cta-sm">Book a service call →</div>
+          </div>
+
+          <div class="biz-row">
+            <div class="title-sm">Downtown Realty Group</div>
+            <div class="meta-sm">Real estate · Condos, townhomes, investment properties across Salt Lake County</div>
+            <div class="cta-sm">See active listings →</div>
+          </div>
+
+          <div class="biz-row">
+            <div class="title-sm">Mountain View Landscaping</div>
+            <div class="meta-sm">Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs</div>
+            <div class="cta-sm">Request a quote →</div>
+          </div>
         </div>
-      </aside>
+      </section>
     </div>
 
-    <!-- Events -->
-    <section id="events">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-title">Today’s events &amp; this week</div>
-          <div class="section-sub">Static examples now — later powered by Ticketmaster &amp; local feeds.</div>
-        </div>
-        <div class="section-tabs">
-          <button class="section-tab active">Today</button>
-          <button class="section-tab">This weekend</button>
-          <button class="section-tab">Family · Nightlife · Outdoors</button>
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="event-card">
-          <div class="tag">Music · Downtown</div>
-          <div class="title-sm">Utah Jazz vs. [Opponent]</div>
-          <div class="meta-sm">
-            7:00 PM · Delta Center · 301 W South Temple, SLC, UT · NBA Regular Season
-          </div>
-          <div class="cta-sm">View tickets →</div>
-        </div>
-
-        <div class="event-card">
-          <div class="tag">Food &amp; Drink</div>
-          <div class="title-sm">Downtown Night Market</div>
-          <div class="meta-sm">
-            5:00 PM – 9:00 PM · Gallivan Center · 239 S Main St · Live music &amp; food trucks
-          </div>
-          <div class="cta-sm">Details &amp; directions →</div>
-        </div>
-
-        <div class="event-card">
-          <div class="tag">Outdoors</div>
-          <div class="title-sm">Sunset Hike Meet-up</div>
-          <div class="meta-sm">
-            6:30 PM · Bonneville Shoreline Trailhead · Casual local group hike
-          </div>
-          <div class="cta-sm">See meetup page →</div>
-        </div>
-
-        <div class="event-card">
-          <div class="tag">Family</div>
-          <div class="title-sm">Pioneer Park Farmers Market</div>
-          <div class="meta-sm">
-            Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Local vendors, coffee, produce
-          </div>
-          <div class="cta-sm">See vendor list →</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Businesses -->
-    <section id="businesses">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-title">Top local services</div>
-          <div class="section-sub">You swap these out for real paying listings city by city.</div>
-        </div>
-        <div class="section-tabs">
-          <button class="section-tab active">Home &amp; property</button>
-          <button class="section-tab">Health &amp; wellness</button>
-          <button class="section-tab">Food · coffee · nightlife</button>
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="biz-card">
-          <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
-          <div class="meta-sm">
-            Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage specialists
-          </div>
-          <div class="cta-sm">Visit website →</div>
-        </div>
-
-        <div class="biz-card">
-          <div class="title-sm">Salt Lake HVAC Pros</div>
-          <div class="meta-sm">
-            Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial
-          </div>
-          <div class="cta-sm">Book a service call →</div>
-        </div>
-
-        <div class="biz-card">
-          <div class="title-sm">Downtown Realty Group</div>
-          <div class="meta-sm">
-            Real estate · Condos, townhomes, investment properties across Salt Lake County
-          </div>
-          <div class="cta-sm">See active listings →</div>
-        </div>
-
-        <div class="biz-card">
-          <div class="title-sm">Mountain View Landscaping</div>
-          <div class="meta-sm">
-            Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs
-          </div>
-          <div class="cta-sm">Request a quote →</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Neighborhoods -->
-    <section id="neighborhoods">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-title">Neighborhoods &amp; city life</div>
-          <div class="section-sub">Later: deep guides. For now: quick overview with clear vibes.</div>
-        </div>
-      </div>
-
+    <!-- Neighborhoods strip -->
+    <section class="strip-block" id="neighborhoods">
+      <div class="strip-title">Neighborhoods at a glance</div>
+      <div class="strip-sub">Deeper neighborhood guides will live on their own pages — for now, here’s the quick version.</div>
       <div class="strip">
-        <div class="strip-card"><b>Downtown</b> · Arena, nightlife, city core, office towers.</div>
-        <div class="strip-card"><b>Sugar House</b> · Older homes, parks, coffee shops, younger crowd.</div>
-        <div class="strip-card"><b>9th &amp; 9th</b> · Restaurants, boutiques, walkable, local businesses.</div>
-        <div class="strip-card"><b>The Avenues</b> · Historic homes, hills, downtown views.</div>
+        <div class="strip-pill"><b>Downtown</b> · Arena, nightlife, office towers.</div>
+        <div class="strip-pill"><b>Sugar House</b> · Parks, coffee, older homes.</div>
+        <div class="strip-pill"><b>9th &amp; 9th</b> · Restaurants, boutiques, walkable.</div>
+        <div class="strip-pill"><b>The Avenues</b> · Historic homes, hills, views.</div>
       </div>
     </section>
 
