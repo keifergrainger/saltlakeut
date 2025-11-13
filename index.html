@@ -10,17 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== Base + tokens ====== */
+    /* ===== Base + tokens ===== */
     :root {
       --bg: #060608;
       --bg-soft: #0d0f14;
-      --card: #12141b;
-      --card-soft: #181b24;
-      --accent: #f97316;           /* warm, non-gamer accent */
+      --card: #151822;       /* slightly lighter than before for readability */
+      --card-soft: #1b1f2a;  /* slightly lighter inner cards */
+      --accent: #f97316;
       --accent-soft: rgba(249,115,22,0.18);
       --text-main: #f7f7ff;
       --text-muted: #a4a9bd;
-      --border-subtle: rgba(255,255,255,0.06);
+      --border-subtle: rgba(255,255,255,0.09);
       --radius-lg: 18px;
       --radius-md: 14px;
       --shadow-soft: 0 18px 40px rgba(0,0,0,0.7);
@@ -33,7 +33,7 @@
       background: radial-gradient(circle at top, #171924 0, #060608 55%);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
+      line-height: 1.5; /* opened up body line-height */
     }
 
     a { color: inherit; text-decoration: none; }
@@ -44,7 +44,7 @@
       padding: 20px 16px 40px;
     }
 
-    /* ====== Header + top ticker (unchanged structurally, visual tuned) ====== */
+    /* ===== Header + top ticker ===== */
 
     header {
       position: sticky;
@@ -64,7 +64,7 @@
     }
 
     .top-ticker {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
     .ticker-label {
@@ -155,7 +155,7 @@
     .btn {
       border-radius: 999px;
       font-size: 12px;
-      padding: 8px 16px;
+      padding: 9px 18px;     /* slightly more padding */
       border: 1px solid transparent;
       background: transparent;
       cursor: pointer;
@@ -165,7 +165,8 @@
       gap: 6px;
       color: var(--text-main);
       line-height: 1.4;
-      transition: background 0.12s ease, border 0.12s ease, transform 0.12s ease, opacity 0.12s ease;
+      transition: background 0.15s ease, border 0.15s ease,
+                  transform 0.15s ease, opacity 0.15s ease;
     }
 
     .btn-primary {
@@ -182,11 +183,20 @@
     }
 
     .btn:hover {
-      opacity: 0.96;
-      transform: translateY(-1px);
+      opacity: 0.98;
+      transform: translateY(-1px) scale(1.02); /* subtle 2% scale */
     }
 
-    /* ====== Hero / top card ====== */
+    .btn-primary:hover {
+      background: #fb8a3b; /* slightly brighter */
+    }
+
+    .btn-ghost:hover {
+      background: #12141e;
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    /* ===== Hero ===== */
 
     .hero {
       border-radius: 24px;
@@ -198,7 +208,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 22px 22px 18px;
+      padding: 26px 22px 22px; /* more vertical padding */
       isolation: isolate;
       margin-bottom: 26px;
     }
@@ -242,7 +252,7 @@
       font-size: 12px;
       color: var(--text-main);
       background: rgba(8,8,10,0.92);
-      padding: 5px 12px;
+      padding: 6px 12px;
       border-radius: 999px;
       display: inline-flex;
       gap: 10px;
@@ -263,13 +273,14 @@
       font-size: clamp(24px, 3vw, 30px);
       font-weight: 600;
       line-height: 1.25;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .hero p {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6; /* more comfortable for the subheadline */
     }
 
     .hero-actions {
@@ -284,6 +295,7 @@
       min-width: 160px;
     }
 
+    /* single supporting line under buttons */
     .hero-note {
       font-size: 11px;
       color: var(--text-muted);
@@ -295,14 +307,29 @@
       color: var(--text-muted);
     }
 
-    .hero-side b {
-      display: block;
-      font-size: 13px;
-      color: var(--accent);
-      margin-bottom: 3px;
+    .hero-side-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
     }
 
-    /* Mobile: stack hero buttons full-width */
+    .hero-link {
+      border: none;
+      background: transparent;
+      color: var(--accent);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-link:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
       .hero-actions {
         flex-direction: column;
@@ -312,10 +339,14 @@
       }
       .hero-side {
         text-align: left;
+        margin-top: 10px;
+      }
+      .hero-side-links {
+        align-items: flex-start;
       }
     }
 
-    /* ====== Main two-column sections ====== */
+    /* ===== Main two columns ===== */
 
     .main-grid {
       display: grid;
@@ -333,8 +364,8 @@
       background: var(--card);
       border-radius: var(--radius-lg);
       padding: 16px 16px 14px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+      border: 1px solid var(--border-subtle);     /* slightly stronger border */
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);    /* slightly stronger shadow */
     }
 
     .section-header {
@@ -380,22 +411,23 @@
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin: 3px 0 4px;
+      margin: 4px 0 4px;
     }
 
     .event-row,
     .biz-row {
       background: var(--card-soft);
       border-radius: var(--radius-md);
-      padding: 9px 10px 8px;
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 12px 10px; /* more padding for scanability */
+      border: 1px solid rgba(255,255,255,0.12);
       font-size: 13px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
       cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease, background 0.1s ease;
-      line-height: 1.4;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+                  border 0.1s ease, background 0.1s ease;
+      line-height: 1.45;
     }
 
     .event-row.featured {
@@ -413,6 +445,9 @@
     .tag {
       font-size: 11px;
       color: var(--accent);
+      font-weight: 600;                   /* slightly stronger label */
+      border-bottom: 1px solid var(--accent-soft);
+      padding-bottom: 1px;
     }
 
     .title-sm {
@@ -430,17 +465,16 @@
       color: var(--accent);
     }
 
-    /* Make service cards visually consistent */
     .biz-row {
       min-height: 80px;
       justify-content: space-between;
     }
 
-    /* ====== Neighborhood strip ====== */
+    /* ===== Neighborhood strip ===== */
 
     .strip-block {
       margin-top: 26px;
-      background: #141721; /* slightly lighter to feel like a “map” strip */
+      background: #181b26; /* lighter than main bg to feel like separate strip */
       border-radius: var(--radius-lg);
       padding: 14px 16px;
       border: 1px solid var(--border-subtle);
@@ -467,9 +501,9 @@
 
     .strip-pill {
       border-radius: 999px;
-      padding: 7px 12px;
+      padding: 7px 13px;
       background: #10121a;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
       font-size: 12px;
       color: var(--text-muted);
       cursor: pointer;
@@ -486,7 +520,7 @@
       transform: translateY(-1px);
     }
 
-    /* ====== Footer ====== */
+    /* ===== Footer ===== */
 
     footer {
       margin-top: 26px;
@@ -507,7 +541,7 @@
 </head>
 <body>
   <header>
-    <!-- keeps your working ticker; just styling adjusted -->
+    <!-- ticker stays as-is functionally -->
     <div class="top-ticker">
       <div class="ticker-label">Live city ticker — Salt Lake City, Utah</div>
       <div class="ticker">
@@ -515,7 +549,7 @@
           <span>Now: 32°F · Clear skies · Light canyon winds</span>
           <span>Tonight: Utah Jazz home game · Doors 6:00 PM · Tip 7:00 PM</span>
           <span>Weekend: Powder watch in the Wasatch · Check resort status</span>
-          <span>Local: Farmers Market at Pioneer Park · Sat 9 AM – 2 PM</span>
+          <span>Local: Farmers Market at Pioneer Park · Sat 9:00 AM – 2:00 PM</span>
           <span>Traffic: I-15 mostly clear · Minor delays near Downtown</span>
         </div>
       </div>
@@ -542,7 +576,7 @@
   </header>
 
   <div class="page">
-    <!-- ===== Hero / top card ===== -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-row">
         <div class="hero-main">
@@ -551,34 +585,43 @@
             <span>Today in Salt Lake City · <span id="today-label">Loading…</span></span>
           </div>
 
-          <!-- NEW more human headline + subheadline -->
           <h2>Hey Salt Lake — here’s what’s happening tonight.</h2>
           <p>
             Scroll once to see today’s top events, trusted local pros, and neighborhoods worth exploring.
           </p>
 
           <div class="hero-actions">
-            <button class="btn btn-primary" onclick="scrollToSection('events')">See today’s events</button>
-            <button class="btn btn-ghost" onclick="scrollToSection('services')">Browse local services</button>
+            <button class="btn btn-primary" onclick="scrollToSection('events')">
+              See today’s events
+            </button>
+            <button class="btn btn-ghost" onclick="scrollToSection('services')">
+              Browse local services
+            </button>
           </div>
 
+          <!-- single supporting line only -->
           <div class="hero-note">
-            Built to be fast, simple, and local — no spam, no clutter, just Salt Lake.
+            Built for locals — no spam, no clutter, just Salt Lake.
           </div>
         </div>
 
         <div class="hero-side">
-          <b>Tonight &amp; this week</b>
-          Start with the highlights, then dive into the full calendar when you’re ready.<br/><br/>
-          <b>Local pros</b>
-          Roofers, HVAC, real estate, landscaping &amp; more in one place.
+          <!-- replaced old copy with two anchor links -->
+          <div class="hero-side-links">
+            <button class="hero-link" onclick="scrollToSection('events')">
+              Tonight &amp; this week ↓
+            </button>
+            <button class="hero-link" onclick="scrollToSection('services')">
+              Local pros ↓
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Main two columns: Today’s events + Local services ===== -->
+    <!-- MAIN GRID: Today’s events + Local pros -->
     <div class="main-grid">
-      <!-- LEFT: TODAY'S EVENTS BLOCK -->
+      <!-- TODAY IN SALT LAKE -->
       <section id="events" class="section-card">
         <div class="section-header">
           <div class="section-title-wrap">
@@ -589,7 +632,7 @@
         </div>
 
         <div class="list">
-          <!-- Tonight's picks group -->
+          <!-- Tonight’s picks -->
           <div class="group-label">Tonight’s picks</div>
 
           <div class="event-row featured">
@@ -613,7 +656,7 @@
             <div class="cta-sm">See meetup page →</div>
           </div>
 
-          <!-- Later this week group -->
+          <!-- Later this week -->
           <div class="group-label">Later this week</div>
 
           <div class="event-row">
@@ -622,17 +665,15 @@
             <div class="meta-sm">Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Coffee, produce, local stalls</div>
             <div class="cta-sm">See vendor list →</div>
           </div>
-
-          <!-- you can append more “later this week” rows below as needed -->
         </div>
       </section>
 
-      <!-- RIGHT: LOCAL SERVICES BLOCK -->
+      <!-- LOCAL PROS -->
       <section id="services" class="section-card">
         <div class="section-header">
           <div class="section-title-wrap">
             <div class="section-title">Need a local pro?</div>
-            <div class="section-sub">Roofers, HVAC, real estate, and more — vetted categories you’ll actually use.</div>
+            <div class="section-sub">Roofers, HVAC, real estate &amp; more — vetted local picks.</div>
           </div>
           <div class="section-link">List your business →</div>
         </div>
@@ -640,35 +681,35 @@
         <div class="list">
           <div class="biz-row">
             <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
-            <div class="meta-sm">Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage &amp; leaks.</div>
+            <div class="meta-sm">Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage &amp; leaks</div>
             <div class="cta-sm">Visit website →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Salt Lake HVAC Pros</div>
-            <div class="meta-sm">Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial.</div>
+            <div class="meta-sm">Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial</div>
             <div class="cta-sm">Book a service call →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Downtown Realty Group</div>
-            <div class="meta-sm">Real estate · Condos, townhomes, investment properties across Salt Lake County.</div>
+            <div class="meta-sm">Real estate · Condos, townhomes, investment properties across Salt Lake County</div>
             <div class="cta-sm">See listings →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Mountain View Landscaping</div>
-            <div class="meta-sm">Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs.</div>
+            <div class="meta-sm">Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs</div>
             <div class="cta-sm">Request a quote →</div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- ===== Neighborhoods section ===== -->
+    <!-- NEIGHBORHOODS -->
     <section class="strip-block" id="neighborhoods">
       <div class="strip-title">Neighborhoods at a glance</div>
-      <div class="strip-sub">New here? Tap a neighborhood to see its vibe at a glance.</div>
+      <div class="strip-sub">New here? Tap a neighborhood to see its vibe.</div>
       <div class="strip">
         <div class="strip-pill"><b>Downtown</b> · Arena, nightlife, office towers.</div>
         <div class="strip-pill"><b>Sugar House</b> · Parks, coffee, older homes.</div>
@@ -695,7 +736,7 @@
       day: "numeric"
     });
 
-    // Smooth scroll for internal CTAs
+    // Smooth scroll for hero buttons + header buttons + hero links
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (!el) return;
