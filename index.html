@@ -25,11 +25,11 @@
     --text-main: #F5F5F5;
     --text-muted: #A3A3A3;
 
-    /* Black & tan accent */
-    --accent: #F4D28B;      /* main tan */
-    --accent-hover: #E5C374;
-    --accent-soft: #2B2416; /* subtle tan-tinted background */
-    --accent-border: rgba(244, 210, 139, 0.7);
+    /* Black & tan accent – toned down */
+    --accent: #E8C676;                 /* softer tan */
+    --accent-hover: #D7B866;
+    --accent-soft: rgba(244,210,139,0.12); /* very subtle tan wash */
+    --accent-border: rgba(244,210,139,0.45); /* lighter border */
 
     /* Status (rare) */
     --success: #22C55E;
@@ -180,7 +180,7 @@
     flex-wrap: wrap;
   }
 
-  /* Buttons */
+  /* Buttons – less glow, softer tan */
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -194,7 +194,7 @@
     font-weight: 600;
     font-size: 0.8rem;
     cursor: pointer;
-    box-shadow: 0 1px 0 var(--accent-border), 0 10px 24px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 1px 0 var(--accent-border), 0 8px 18px rgba(0, 0, 0, 0.4);
   }
 
   .btn-primary:hover {
@@ -228,7 +228,7 @@
     background: linear-gradient(to bottom right, var(--card-bg), var(--card-elevated));
     border: 1px solid var(--border-subtle);
     padding: 1.5rem 1.5rem 1.1rem;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.5);
     margin-bottom: 1.5rem;
     isolation: isolate;
     min-height: 220px;
@@ -244,9 +244,9 @@
     background-image: url("https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1600");
     background-size: cover;
     background-position: center;
-    opacity: 0.4;
+    opacity: 0.35;
     transform: scale(1.04);
-    filter: contrast(1.03) saturate(1.03);
+    filter: contrast(1.02) saturate(1.02);
     z-index: -2;
   }
 
@@ -255,7 +255,7 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at bottom right, rgba(244, 210, 139, 0.22), transparent 60%),
+      radial-gradient(circle at bottom right, var(--accent-soft), transparent 60%),
       linear-gradient(to top, rgba(5, 5, 8, 0.96), rgba(5, 5, 8, 0.7), transparent);
     z-index: -1;
   }
@@ -384,12 +384,12 @@
     border-radius: 18px;
     border: 1px solid var(--border-subtle);
     padding: 1.25rem 1.5rem;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
   }
 
-  /* Events column given slight emphasis */
+  /* Events column given slight emphasis, but subtle */
   #events.section-card {
-    background: radial-gradient(circle at top left, rgba(244, 210, 139, 0.1), var(--card-bg));
+    background: radial-gradient(circle at top left, rgba(244, 210, 139, 0.06), var(--card-bg));
     border-color: var(--border-subtle);
   }
 
@@ -470,20 +470,20 @@
 
   .event-row.featured {
     border-color: var(--accent-border);
-    background: radial-gradient(circle at left, rgba(244, 210, 139, 0.14), var(--card-elevated));
+    background: radial-gradient(circle at left, rgba(244, 210, 139, 0.10), var(--card-elevated));
   }
 
   .event-row:hover {
     background-color: var(--bg-soft);
     border-color: var(--accent-border);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
     transform: translateY(-1px);
   }
 
   .biz-row:hover {
     background-color: var(--bg-soft);
     border-color: var(--accent-border);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
     transform: translateY(-1px);
   }
 
@@ -494,7 +494,7 @@
     margin-bottom: 0.15rem;
   }
 
-  /* Featured pill */
+  /* Featured pill – still tan, but less in-your-face because accent is softer */
   .badge-featured {
     display: inline-flex;
     align-items: center;
@@ -566,7 +566,7 @@
   .strip-block {
     margin-top: 1.75rem;
     background: linear-gradient(to bottom right, var(--card-bg), var(--card-elevated));
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
   }
 
   .strip-title {
@@ -606,7 +606,7 @@
     font-weight: 500;
   }
 
-  /* First neighborhood looks "active" / primary */
+  /* First neighborhood looks "active" / primary but still subtle */
   .strip-pill:first-child {
     border-color: var(--accent-border);
     background: var(--accent-soft);
