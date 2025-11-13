@@ -10,12 +10,781 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Full CSS from earlier message */
+    :root {
+      --bg: #03030a;
+      --bg-alt: #070717;
+      --bg-soft: #101024;
+      --accent: #4fd1ff;
+      --accent-soft: rgba(79, 209, 255, 0.18);
+      --accent-strong: #7df5ff;
+      --danger: #ff4f7b;
+      --text-main: #f7f7ff;
+      --text-muted: #a0a5c4;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow-deep: 0 28px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #192347 0, transparent 45%),
+        radial-gradient(circle at 100% 0%, #17243f 0, transparent 45%),
+        radial-gradient(circle at 50% 120%, #17172e 0, #03030a 65%);
+      color: var(--text-main);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 16px 40px;
+    }
+
+    /* Top bar / nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(3,3,10,0.96), rgba(3,3,10,0.75));
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.8);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        flex-wrap: wrap;
+        border-radius: 18px;
+      }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-right: 10px;
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background:
+        conic-gradient(from 220deg, #4fd1ff, #7df5ff, #ffffff, #4fd1ff);
+      box-shadow: 0 0 18px rgba(79,209,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-logo::after {
+      content: "SL";
+      font-size: 14px;
+      font-weight: 700;
+      color: #020308;
+      text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    }
+
+    .brand-text h1 {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .brand-text p {
+      font-size: 12px;
+      color: var(--text-main);
+    }
+
+    .ticker-wrap {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ticker-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .ticker {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at 0% 0%, rgba(79,209,255,0.2), transparent 55%);
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      font-size: 12px;
+      color: var(--text-main);
+    }
+
+    .ticker span {
+      margin-right: 28px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .top-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .btn-pill {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #020308;
+      box-shadow: 0 0 18px rgba(79,209,255,0.7);
+    }
+    .btn-ghost {
+      background: rgba(16,16,35,0.9);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+    }
+
+    /* Layout: hero + sidebar */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1.4fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      min-height: 320px;
+      background: #000;
+      box-shadow: var(--shadow-deep);
+      padding: 20px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      isolation: isolate;
+    }
+
+    /* Replace this with your own skyline image URL */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.82;
+      transform: scale(1.06);
+      filter: saturate(1.1) contrast(1.1);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(2,2,10,0.95), rgba(2,2,10,0.4), transparent),
+        radial-gradient(circle at 0% 0%, rgba(79,209,255,0.35), transparent 45%);
+      z-index: -1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(3,3,12,0.85);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(18px);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #26ff88;
+      box-shadow: 0 0 16px rgba(38,255,136,0.9);
+    }
+
+    .hero h2 {
+      font-size: clamp(26px, 3vw, 32px);
+      max-width: 520px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      text-shadow: 0 16px 40px rgba(0,0,0,0.9);
+    }
+
+    .hero p {
+      font-size: 14px;
+      max-width: 520px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-chip {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      background: rgba(5,5,18,0.9);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+    }
+
+    .hero-actions .btn-pill {
+      font-size: 13px;
+    }
+
+    .hero-kpi-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-kpi {
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(3,3,14,0.8);
+      border: 1px solid var(--border-subtle);
+    }
+    .hero-kpi b {
+      color: var(--accent);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0% 0%, var(--accent-soft), var(--bg-soft));
+      border: 1px solid var(--border-subtle);
+      padding: 13px 14px 12px;
+      box-shadow: var(--shadow-deep);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .today-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .today-pill {
+      border-radius: 12px;
+      padding: 7px 9px;
+      background: rgba(6,7,22,0.95);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .today-pill b { font-size: 12px; }
+    .today-pill span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .ad-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      gap: 6px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+    .section-sub {
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .section-tabs {
+      display: flex;
+      gap: 6px;
+      font-size: 11px;
+    }
+    .section-tab {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(9,10,28,0.96);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .section-tab.active {
+      border-color: rgba(79,209,255,0.7);
+      background: rgba(79,209,255,0.12);
+      color: var(--accent-strong);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+    }
+
+    .event-card,
+    .biz-card {
+      border-radius: var(--radius-md);
+      background: rgba(9,10,28,0.96);
+      border: 1px solid var(--border-subtle);
+      padding: 9px 10px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border 0.12s ease, background 0.12s ease;
+    }
+
+    .event-card::before,
+    .biz-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(79,209,255,0.25), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.12s ease;
+      pointer-events: none;
+    }
+
+    .event-card:hover,
+    .biz-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+      border-color: rgba(79,209,255,0.7);
+      background: rgba(10,12,40,0.98);
+    }
+    .event-card:hover::before,
+    .biz-card:hover::before {
+      opacity: 1;
+    }
+
+    .tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+    }
+
+    .title-sm {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .meta-sm {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .cta-sm {
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* Neighborhood / lifestyle strip */
+    .strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .strip-card {
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(8,9,24,0.98);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .strip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(79,209,255,0.75);
+    }
+
+    footer {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    a.footer-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Full body HTML from earlier message -->
-  <h1>Salt Lake UT — Full Template Loaded</h1>
-  <p>This file contains the full UI template. Replace this placeholder with the full design you pasted earlier.</p>
+  <div class="page">
+    <!-- Sticky header -->
+    <header>
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <h1>SALTLAKEUT.COM</h1>
+          <p>Local News · Events · Businesses</p>
+        </div>
+      </div>
+
+      <div class="ticker-wrap">
+        <div class="ticker-label">Live city ticker — Salt Lake City, Utah</div>
+        <div class="ticker">
+          <div class="ticker-inner">
+            <span>Now: 32°F · Clear skies · Light canyon winds</span>
+            <span>Tonight: Utah Jazz home game · Doors 6:00 PM · Tip 7:00 PM</span>
+            <span>Weekend: Powder watch in the Wasatch · Check resort status</span>
+            <span>Local: Farmers Market at Pioneer Park · Sat 9 AM – 2 PM</span>
+            <span>Traffic: I-15 flowing · Minor delays near Downtown</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-ctas">
+        <button class="btn-pill btn-primary" onclick="scrollToSection('events')">
+          + Submit / View Events
+        </button>
+        <button class="btn-pill btn-ghost" onclick="scrollToSection('businesses')">
+          List Your Business
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero + sidebar -->
+    <div class="layout">
+      <section class="hero">
+        <div class="hero-tag">
+          <div class="hero-tag-dot"></div>
+          <span>Salt Lake City · Utah</span>
+        </div>
+        <h2>The fast, clean local hub for everything happening in Salt Lake City.</h2>
+        <p>
+          One place for events, local services, neighborhoods, and weekend ideas — built for people who actually live here, not just tourists.
+        </p>
+
+        <div class="hero-meta-row">
+          <div class="hero-chip">Today: Events · Food · Live Music · Outdoors</div>
+          <div class="hero-chip">Neighborhoods: Downtown · Sugar House · 9th &amp; 9th · The Avenues</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#events"><button class="btn-pill btn-primary">View Today’s Events</button></a>
+          <a href="#businesses"><button class="btn-pill btn-ghost">Browse Local Services</button></a>
+        </div>
+
+        <div class="hero-kpi-row">
+          <div class="hero-kpi"><b>Beta:</b> Free listings while we’re building out the network.</div>
+          <div class="hero-kpi"><b>Goal:</b> Every event, every local service, one clean page.</div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Today in Salt Lake</div>
+            <div class="card-sub">Static sample — we’ll wire it to APIs later.</div>
+          </div>
+          <div class="today-pills">
+            <div class="today-pill">
+              <b>Now · 32°F · Clear</b>
+              <span>Downtown &amp; valley · Light wind · Cold evening commute</span>
+            </div>
+            <div class="today-pill">
+              <b>Tonight · Jazz Game</b>
+              <span>7:00 PM · Delta Center · 301 W South Temple · Doors 6:00 PM</span>
+            </div>
+            <div class="today-pill">
+              <b>Weekend · Mountains</b>
+              <span>Powder watch in Cottonwood Canyons · Check resort &amp; canyon alerts</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card ad-card">
+          <div class="card-header">
+            <div class="card-title">Feature Your Business</div>
+            <div class="card-sub">Lock ad spots in early.</div>
+          </div>
+          <p>
+            Own a business in Salt Lake City? Reserve placement on this panel while we’re growing traffic — feature your logo, offer, and call-to-action in front of local eyes.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Events -->
+    <section id="events">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Today’s Events &amp; This Week</div>
+          <div class="section-sub">These are static examples now — later pulled from Ticketmaster &amp; local feeds.</div>
+        </div>
+        <div class="section-tabs">
+          <div class="section-tab active">Today</div>
+          <div class="section-tab">This Weekend</div>
+          <div class="section-tab">Family · Nightlife · Outdoors</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="event-card">
+          <div class="tag">Music · Downtown</div>
+          <div class="title-sm">Utah Jazz vs. [Opponent]</div>
+          <div class="meta-sm">
+            7:00 PM · Delta Center · 301 W South Temple, SLC, UT · NBA Regular Season
+          </div>
+          <div class="cta-sm">View tickets →</div>
+        </div>
+
+        <div class="event-card">
+          <div class="tag">Food &amp; Drink</div>
+          <div class="title-sm">Downtown Night Market</div>
+          <div class="meta-sm">
+            5:00 PM – 9:00 PM · Gallivan Center · 239 S Main St · Live music &amp; food trucks
+          </div>
+          <div class="cta-sm">Details &amp; directions →</div>
+        </div>
+
+        <div class="event-card">
+          <div class="tag">Outdoors</div>
+          <div class="title-sm">Sunset Hike Meet-up</div>
+          <div class="meta-sm">
+            6:30 PM · Bonneville Shoreline Trailhead · Casual local group hike
+          </div>
+          <div class="cta-sm">See meetup page →</div>
+        </div>
+
+        <div class="event-card">
+          <div class="tag">Family</div>
+          <div class="title-sm">Pioneer Park Farmers Market</div>
+          <div class="meta-sm">
+            Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Local vendors, coffee, produce
+          </div>
+          <div class="cta-sm">See vendor list →</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Businesses -->
+    <section id="businesses">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Top Local Services</div>
+          <div class="section-sub">You replace these with real paying listings city by city.</div>
+        </div>
+        <div class="section-tabs">
+          <div class="section-tab active">Home &amp; Property</div>
+          <div class="section-tab">Health &amp; Wellness</div>
+          <div class="section-tab">Food · Coffee · Nightlife</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="biz-card">
+          <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
+          <div class="meta-sm">
+            Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage specialists
+          </div>
+          <div class="cta-sm">Visit website →</div>
+        </div>
+
+        <div class="biz-card">
+          <div class="title-sm">Salt Lake HVAC Pros</div>
+          <div class="meta-sm">
+            Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial
+          </div>
+          <div class="cta-sm">Book a service call →</div>
+        </div>
+
+        <div class="biz-card">
+          <div class="title-sm">Downtown Realty Group</div>
+          <div class="meta-sm">
+            Real estate · Condos, townhomes, investment properties across Salt Lake County
+          </div>
+          <div class="cta-sm">See active listings →</div>
+        </div>
+
+        <div class="biz-card">
+          <div class="title-sm">Mountain View Landscaping</div>
+          <div class="meta-sm">
+            Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs
+          </div>
+          <div class="cta-sm">Request a quote →</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Neighborhood / lifestyle strip -->
+    <section id="neighborhoods">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Neighborhoods &amp; City Life</div>
+          <div class="section-sub">Later: deep guides. For now: clean overview with fast vibes.</div>
+        </div>
+      </div>
+
+      <div class="strip">
+        <div class="strip-card">
+          <div class="strip-dot"></div>
+          <span><b>Downtown</b> · Arena, nightlife, city core, office towers.</span>
+        </div>
+        <div class="strip-card">
+          <div class="strip-dot"></div>
+          <span><b>Sugar House</b> · Older homes, parks, coffee shops, younger crowd.</span>
+        </div>
+        <div class="strip-card">
+          <div class="strip-dot"></div>
+          <span><b>9th &amp; 9th</b> · Restaurants, boutiques, walkable, local businesses.</span>
+        </div>
+        <div class="strip-card">
+          <div class="strip-dot"></div>
+          <span><b>The Avenues</b> · Historic homes, hills, downtown views.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <span>© <span id="year"></span> SaltLakeUT.com · Independent local guide for Salt Lake City.</span>
+      <span>Partner, sponsor, or list your business: <a class="footer-link" href="mailto:youremail@example.com">youremail@example.com</a></span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
 </body>
 </html>
