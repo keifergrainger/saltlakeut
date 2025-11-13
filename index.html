@@ -2,34 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SaltLakeUT.com — Salt Lake City Local Hub</title>
+  <title>SaltLakeUT.com — Today in Salt Lake City</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="See what’s happening in Salt Lake City today and find trusted local services." />
+  <meta name="description" content="See what’s happening in Salt Lake City today — live events and trusted local services on one clean page." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #050712;
-      --bg-soft: #0b0f1f;
-      --card: #101523;
-      --card-soft: #13192a;
-      --accent: #3da8ff;
-      --accent-soft: rgba(61,168,255,0.12);
-      --text-main: #f5f6ff;
-      --text-muted: #a3abc7;
+      --bg: #060608;
+      --bg-soft: #0d0f14;
+      --card: #12141b;
+      --card-soft: #181b24;
+      --accent: #f97316;           /* warm orange */
+      --accent-soft: rgba(249,115,22,0.18);
+      --text-main: #f7f7ff;
+      --text-muted: #a4a9bd;
       --border-subtle: rgba(255,255,255,0.06);
       --radius-lg: 18px;
       --radius-md: 14px;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.6);
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.7);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top, #11172c 0, #050712 55%);
+      background: radial-gradient(circle at top, #171924 0, #060608 55%);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
@@ -49,7 +49,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(18px);
-      background: rgba(5,7,18,0.97);
+      background: rgba(4,5,8,0.98);
       border-bottom: 1px solid var(--border-subtle);
       margin: -20px -16px 22px;
     }
@@ -62,7 +62,7 @@
     }
 
     .top-ticker {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .ticker-label {
@@ -73,10 +73,10 @@
 
     .ticker {
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--text-main);
       padding: 6px 10px;
       border-radius: 999px;
-      background: #070a15;
+      background: #090a0e;
       border: 1px solid var(--border-subtle);
       white-space: nowrap;
       overflow: hidden;
@@ -131,6 +131,7 @@
     .brand-mark span {
       font-weight: 700;
       font-size: 15px;
+      color: var(--accent);
     }
 
     .brand-text h1 {
@@ -164,19 +165,19 @@
 
     .btn-primary {
       background: var(--accent);
-      color: #050712;
+      color: #050509;
       font-weight: 600;
       border-color: var(--accent);
     }
 
     .btn-ghost {
       border-color: var(--border-subtle);
-      background: #070a15;
+      background: #0a0b10;
       color: var(--text-main);
     }
 
     .btn:hover {
-      opacity: 0.95;
+      opacity: 0.96;
       transform: translateY(-1px);
     }
 
@@ -188,7 +189,7 @@
       background: #000;
       box-shadow: var(--shadow-soft);
       position: relative;
-      min-height: 260px;
+      min-height: 240px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -204,7 +205,7 @@
       background-image: url("https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
-      opacity: 0.75;
+      opacity: 0.72;
       transform: scale(1.05);
       filter: saturate(1.05) contrast(1.05);
       z-index: -2;
@@ -215,67 +216,90 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(5,7,18,0.96), rgba(5,7,18,0.5), transparent),
-        radial-gradient(circle at top left, rgba(0,0,0,0.4), transparent 55%);
+        linear-gradient(to top, rgba(6,7,10,0.97), rgba(6,7,10,0.5), transparent),
+        radial-gradient(circle at top left, rgba(0,0,0,0.45), transparent 55%);
       z-index: -1;
+    }
+
+    .hero-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-main {
+      max-width: 560px;
     }
 
     .hero-tag {
       font-size: 11px;
       color: var(--text-muted);
-      background: rgba(5,7,18,0.9);
+      background: rgba(8,8,10,0.92);
       padding: 4px 10px;
       border-radius: 999px;
       display: inline-flex;
       gap: 8px;
       align-items: center;
       margin-bottom: 8px;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.14);
     }
 
     .hero-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #35d27a;
+      background: var(--accent);
     }
 
     .hero h2 {
       font-size: clamp(24px, 3vw, 30px);
       font-weight: 600;
-      max-width: 520px;
       line-height: 1.2;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .hero p {
       font-size: 14px;
       color: var(--text-muted);
-      max-width: 520px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .hero-actions .btn {
       font-size: 13px;
     }
 
-    .hero-meta {
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-side {
+      text-align: right;
       font-size: 12px;
       color: var(--text-muted);
+    }
+
+    .hero-side b {
+      display: block;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 2px;
     }
 
     /* Two-column main sections */
 
     .main-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
       gap: 20px;
     }
 
@@ -290,14 +314,14 @@
       border-radius: var(--radius-lg);
       padding: 16px 16px 14px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.6);
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      align-items: flex-end;
+      align-items: center;
       margin-bottom: 12px;
     }
 
@@ -340,14 +364,19 @@
       flex-direction: column;
       gap: 3px;
       cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease, background 0.1s ease;
+    }
+
+    .event-row.featured {
+      border-color: var(--accent);
+      background: radial-gradient(circle at left, var(--accent-soft), var(--card-soft));
     }
 
     .event-row:hover,
     .biz-row:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(0,0,0,0.7);
-      border-color: rgba(61,168,255,0.6);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.75);
+      border-color: rgba(249,115,22,0.7);
     }
 
     .tag {
@@ -378,7 +407,7 @@
       border-radius: var(--radius-lg);
       padding: 14px 16px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.6);
     }
 
     .strip-title {
@@ -402,7 +431,7 @@
     .strip-pill {
       border-radius: 999px;
       padding: 6px 11px;
-      background: #090d1c;
+      background: #10121a;
       border: 1px solid rgba(255,255,255,0.08);
       font-size: 12px;
       color: var(--text-muted);
@@ -457,10 +486,10 @@
 
       <div class="top-buttons">
         <button class="btn btn-primary" onclick="scrollToSection('events')">
-          View Today’s Events
+          Today’s events
         </button>
         <button class="btn btn-ghost" onclick="scrollToSection('services')">
-          Find a Local Pro
+          Find a local pro
         </button>
       </div>
     </div>
@@ -469,20 +498,32 @@
   <div class="page">
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-tag">
-        <div class="hero-dot"></div>
-        <span>Salt Lake City · Utah</span>
-      </div>
-      <h2>One clean page for what’s happening in Salt Lake City tonight.</h2>
-      <p>
-        Check today’s events in seconds, then find a trusted local service when you need a roof, HVAC repair, real estate agent, or landscaping crew.
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="scrollToSection('events')">See today’s events</button>
-        <button class="btn btn-ghost" onclick="scrollToSection('services')">Browse local services</button>
-      </div>
-      <div class="hero-meta">
-        Built to be fast, simple and local — no spam, no clutter, just Salt Lake.
+      <div class="hero-row">
+        <div class="hero-main">
+          <div class="hero-tag">
+            <div class="hero-dot"></div>
+            <span>Today in Salt Lake City · <span id="today-label">Loading…</span></span>
+          </div>
+          <h2>One clean page that shows you what’s worth doing in Salt Lake City tonight.</h2>
+          <p>
+            Scroll once and see the key events, then find a trusted local service if you need a roof, HVAC repair, real estate agent, or landscaping crew.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="scrollToSection('events')">See today’s events</button>
+            <button class="btn btn-ghost" onclick="scrollToSection('services')">Browse local services</button>
+          </div>
+          <div class="hero-note">
+            No junk, no endless lists — just the highlights for people who actually live here.
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <b>4 featured events</b>
+          updated daily<br/>
+          <br/>
+          <b>Essential services</b>
+          hand-picked categories you’ll actually use.
+        </div>
       </div>
     </section>
 
@@ -493,37 +534,37 @@
         <div class="section-header">
           <div class="section-title-wrap">
             <div class="section-title">Today &amp; this week in Salt Lake</div>
-            <div class="section-sub">Sample events — later pulled automatically from event feeds.</div>
+            <div class="section-sub">Start here if you’re asking “what should we do tonight?”</div>
           </div>
-          <div class="section-link">View full calendar →</div>
+          <div class="section-link">Open full calendar →</div>
         </div>
 
         <div class="list">
-          <div class="event-row">
-            <div class="tag">Music · Downtown</div>
+          <div class="event-row featured">
+            <div class="tag">Spotlight · Downtown</div>
             <div class="title-sm">Utah Jazz vs. [Opponent]</div>
-            <div class="meta-sm">7:00 PM · Delta Center · 301 W South Temple, SLC · NBA game</div>
+            <div class="meta-sm">7:00 PM · Delta Center · 301 W South Temple · NBA game, doors 6:00 PM</div>
             <div class="cta-sm">View tickets →</div>
           </div>
 
           <div class="event-row">
             <div class="tag">Food &amp; drink</div>
             <div class="title-sm">Downtown Night Market</div>
-            <div class="meta-sm">5:00 PM – 9:00 PM · Gallivan Center · Live music &amp; food trucks</div>
+            <div class="meta-sm">5:00 PM – 9:00 PM · Gallivan Center · Live music, food trucks, local vendors</div>
             <div class="cta-sm">Details &amp; directions →</div>
           </div>
 
           <div class="event-row">
             <div class="tag">Outdoors</div>
             <div class="title-sm">Sunset Hike Meet-up</div>
-            <div class="meta-sm">6:30 PM · Bonneville Shoreline Trailhead · Casual group hike</div>
+            <div class="meta-sm">6:30 PM · Bonneville Shoreline Trailhead · Casual local group hike</div>
             <div class="cta-sm">See meetup page →</div>
           </div>
 
           <div class="event-row">
             <div class="tag">Family</div>
             <div class="title-sm">Pioneer Park Farmers Market</div>
-            <div class="meta-sm">Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Local vendors &amp; coffee</div>
+            <div class="meta-sm">Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Coffee, produce, local stalls</div>
             <div class="cta-sm">See vendor list →</div>
           </div>
         </div>
@@ -534,7 +575,7 @@
         <div class="section-header">
           <div class="section-title-wrap">
             <div class="section-title">Local services you actually need</div>
-            <div class="section-sub">Roofing, HVAC, real estate, landscaping — city by city.</div>
+            <div class="section-sub">When something breaks or you’re ready to move, start here.</div>
           </div>
           <div class="section-link">List your business →</div>
         </div>
@@ -542,7 +583,7 @@
         <div class="list">
           <div class="biz-row">
             <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
-            <div class="meta-sm">Roofing · Free inspections · Storm damage &amp; leaks · Salt Lake City &amp; valley</div>
+            <div class="meta-sm">Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage &amp; leaks</div>
             <div class="cta-sm">Visit website →</div>
           </div>
 
@@ -570,7 +611,7 @@
     <!-- Neighborhoods strip -->
     <section class="strip-block" id="neighborhoods">
       <div class="strip-title">Neighborhoods at a glance</div>
-      <div class="strip-sub">Deeper neighborhood guides will live on their own pages — for now, here’s the quick version.</div>
+      <div class="strip-sub">Later you link each one to a full guide — for now, it just gives newcomers a quick mental map.</div>
       <div class="strip">
         <div class="strip-pill"><b>Downtown</b> · Arena, nightlife, office towers.</div>
         <div class="strip-pill"><b>Sugar House</b> · Parks, coffee, older homes.</div>
@@ -586,7 +627,16 @@
   </div>
 
   <script>
+    // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Today label in hero
+    const today = new Date();
+    document.getElementById('today-label').textContent = today.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "short",
+      day: "numeric"
+    });
 
     function scrollToSection(id) {
       const el = document.getElementById(id);
