@@ -14,9 +14,9 @@
     :root {
       --bg: #060608;
       --bg-soft: #0d0f14;
-      --card: #151822;       /* slightly lighter than before for readability */
+      --card: #151822;       /* slightly lighter for readability */
       --card-soft: #1b1f2a;  /* slightly lighter inner cards */
-      --accent: #f97316;
+      --accent: #f97316;     /* warm orange */
       --accent-soft: rgba(249,115,22,0.18);
       --text-main: #f7f7ff;
       --text-muted: #a4a9bd;
@@ -33,7 +33,7 @@
       background: radial-gradient(circle at top, #171924 0, #060608 55%);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5; /* opened up body line-height */
+      line-height: 1.5;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -51,7 +51,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(18px);
-      background: rgba(4,5,8,0.98);
+      background: rgba(4,5,8,0.96);
       border-bottom: 1px solid var(--border-subtle);
       margin: -20px -16px 22px;
     }
@@ -75,11 +75,11 @@
 
     .ticker {
       font-size: 12px;
-      color: var(--text-main);
+      color: #7c8299;          /* slightly dimmer than hero text */
       padding: 6px 10px;
       border-radius: 999px;
-      background: #090a0e;
-      border: 1px solid var(--border-subtle);
+      background: #05060a;
+      border: 1px solid rgba(255,255,255,0.08);
       white-space: nowrap;
       overflow: hidden;
     }
@@ -155,7 +155,7 @@
     .btn {
       border-radius: 999px;
       font-size: 12px;
-      padding: 9px 18px;     /* slightly more padding */
+      padding: 9px 18px;
       border: 1px solid transparent;
       background: transparent;
       cursor: pointer;
@@ -165,8 +165,11 @@
       gap: 6px;
       color: var(--text-main);
       line-height: 1.4;
-      transition: background 0.15s ease, border 0.15s ease,
-                  transform 0.15s ease, opacity 0.15s ease;
+      transition:
+        background 0.15s ease,
+        border 0.15s ease,
+        transform 0.15s ease,
+        opacity 0.15s ease;
     }
 
     .btn-primary {
@@ -184,11 +187,11 @@
 
     .btn:hover {
       opacity: 0.98;
-      transform: translateY(-1px) scale(1.02); /* subtle 2% scale */
+      transform: translateY(-1px) scale(1.02);
     }
 
     .btn-primary:hover {
-      background: #fb8a3b; /* slightly brighter */
+      background: #fb8a3b;
     }
 
     .btn-ghost:hover {
@@ -201,14 +204,14 @@
     .hero {
       border-radius: 24px;
       overflow: hidden;
-      background: #000;
+      background: #0d1019; /* slightly brighter behind text for contrast */
       box-shadow: var(--shadow-soft);
       position: relative;
       min-height: 240px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 26px 22px 22px; /* more vertical padding */
+      padding: 28px 22px 22px;
       isolation: isolate;
       margin-bottom: 26px;
     }
@@ -220,19 +223,26 @@
       background-image: url("https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
-      opacity: 0.72;
+      opacity: 0.65;
       transform: scale(1.05);
-      filter: saturate(1.05) contrast(1.05);
+      filter: contrast(1.05) saturate(1.02);
       z-index: -2;
     }
 
     .hero::after {
+      /* warmer navy/charcoal gradient with subtle orange tint */
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(6,7,10,0.97), rgba(6,7,10,0.55), transparent),
-        radial-gradient(circle at top left, rgba(0,0,0,0.45), transparent 55%);
+        linear-gradient(
+          to top,
+          rgba(5,6,11,0.96),
+          rgba(7,9,18,0.80),
+          rgba(10,12,22,0.55),
+          transparent
+        ),
+        radial-gradient(circle at bottom right, rgba(249,115,22,0.35), transparent 60%);
       z-index: -1;
     }
 
@@ -251,14 +261,14 @@
     .hero-tag {
       font-size: 12px;
       color: var(--text-main);
-      background: rgba(8,8,10,0.92);
+      background: rgba(7,8,13,0.92);
       padding: 6px 12px;
       border-radius: 999px;
       display: inline-flex;
       gap: 10px;
       align-items: center;
       margin-bottom: 8px;
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
       font-weight: 500;
     }
 
@@ -279,26 +289,27 @@
     .hero p {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 16px;
-      line-height: 1.6; /* more comfortable for the subheadline */
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .hero-trust {
+      font-size: 12px;
+      color: #d9dbe7;
+      margin-bottom: 14px;
+      line-height: 1.6;
     }
 
     .hero-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .hero-actions .btn {
       font-size: 13px;
       min-width: 160px;
-    }
-
-    /* single supporting line under buttons */
-    .hero-note {
-      font-size: 11px;
-      color: var(--text-muted);
     }
 
     .hero-side {
@@ -346,11 +357,11 @@
       }
     }
 
-    /* ===== Main two columns ===== */
+    /* ===== Main two columns (Events > Local Pros) ===== */
 
     .main-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr); /* 60/40 split */
       gap: 20px;
     }
 
@@ -364,8 +375,14 @@
       background: var(--card);
       border-radius: var(--radius-lg);
       padding: 16px 16px 14px;
-      border: 1px solid var(--border-subtle);     /* slightly stronger border */
-      box-shadow: 0 12px 30px rgba(0,0,0,0.7);    /* slightly stronger shadow */
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+    }
+
+    /* Events column gets slightly lighter bg + thicker border */
+    #events.section-card {
+      background: #181c28;
+      border-width: 2px;
     }
 
     .section-header {
@@ -383,13 +400,21 @@
     }
 
     .section-title {
-      font-size: 15px;
       font-weight: 600;
+    }
+
+    #events .section-title {
+      font-size: 16px;       /* slightly larger than Local Pros */
+    }
+
+    #services .section-title {
+      font-size: 15px;
     }
 
     .section-sub {
       font-size: 12px;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
     .section-link {
@@ -402,7 +427,7 @@
     .list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .group-label {
@@ -418,7 +443,7 @@
     .biz-row {
       background: var(--card-soft);
       border-radius: var(--radius-md);
-      padding: 12px 12px 10px; /* more padding for scanability */
+      padding: 13px 13px 11px; /* slightly more padding */
       border: 1px solid rgba(255,255,255,0.12);
       font-size: 13px;
       display: flex;
@@ -427,7 +452,8 @@
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.1s ease,
                   border 0.1s ease, background 0.1s ease;
-      line-height: 1.45;
+      line-height: 1.5;
+      position: relative; /* for featured badge */
     }
 
     .event-row.featured {
@@ -435,17 +461,38 @@
       background: radial-gradient(circle at left, var(--accent-soft), var(--card-soft));
     }
 
-    .event-row:hover,
+    /* FEATURED badge – only appears on .event-row.featured */
+    .event-row.featured::before {
+      content: "Featured";
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #050509;
+      font-weight: 700;
+    }
+
+    .event-row:hover {
+      background: #222636;
+      border-color: var(--accent);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.8);
+    }
+
     .biz-row:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(0,0,0,0.75);
       border-color: rgba(249,115,22,0.7);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.75);
     }
 
     .tag {
       font-size: 11px;
       color: var(--accent);
-      font-weight: 600;                   /* slightly stronger label */
+      font-weight: 600;
       border-bottom: 1px solid var(--accent-soft);
       padding-bottom: 1px;
     }
@@ -470,15 +517,20 @@
       justify-content: space-between;
     }
 
+    /* underline CTA in services on hover */
+    .biz-row:hover .cta-sm {
+      text-decoration: underline;
+    }
+
     /* ===== Neighborhood strip ===== */
 
     .strip-block {
       margin-top: 26px;
-      background: #181b26; /* lighter than main bg to feel like separate strip */
+      background: #191d29; /* lighter strip */
       border-radius: var(--radius-lg);
       padding: 14px 16px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.65);
     }
 
     .strip-title {
@@ -491,6 +543,7 @@
       font-size: 12px;
       color: var(--text-muted);
       margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     .strip {
@@ -501,22 +554,24 @@
 
     .strip-pill {
       border-radius: 999px;
-      padding: 7px 13px;
+      padding: 8px 15px; /* larger pill */
       background: #10121a;
       border: 1px solid rgba(255,255,255,0.12);
       font-size: 12px;
       color: var(--text-muted);
       cursor: pointer;
       transition: background 0.12s ease, border 0.12s ease, transform 0.12s ease;
+      font-weight: 500; /* easier to scan */
     }
 
     .strip-pill b {
       color: var(--text-main);
+      font-weight: 600;
     }
 
     .strip-pill:hover {
-      background: var(--accent-soft);
-      border-color: rgba(249,115,22,0.6);
+      background: #212538;
+      border-color: rgba(249,115,22,0.7);
       transform: translateY(-1px);
     }
 
@@ -541,7 +596,7 @@
 </head>
 <body>
   <header>
-    <!-- ticker stays as-is functionally -->
+    <!-- Ticker: visually recedes a bit vs hero -->
     <div class="top-ticker">
       <div class="ticker-label">Live city ticker — Salt Lake City, Utah</div>
       <div class="ticker">
@@ -589,6 +644,9 @@
           <p>
             Scroll once to see today’s top events, trusted local pros, and neighborhoods worth exploring.
           </p>
+          <p class="hero-trust">
+            Updated daily by people who actually live here.
+          </p>
 
           <div class="hero-actions">
             <button class="btn btn-primary" onclick="scrollToSection('events')">
@@ -598,15 +656,9 @@
               Browse local services
             </button>
           </div>
-
-          <!-- single supporting line only -->
-          <div class="hero-note">
-            Built for locals — no spam, no clutter, just Salt Lake.
-          </div>
         </div>
 
         <div class="hero-side">
-          <!-- replaced old copy with two anchor links -->
           <div class="hero-side-links">
             <button class="hero-link" onclick="scrollToSection('events')">
               Tonight &amp; this week ↓
@@ -636,23 +688,29 @@
           <div class="group-label">Tonight’s picks</div>
 
           <div class="event-row featured">
-            <div class="tag">Music · Downtown</div>
+            <div class="tag">♪ Music · Downtown</div>
             <div class="title-sm">Utah Jazz vs. [Opponent]</div>
-            <div class="meta-sm">7:00 PM · Delta Center · 301 W South Temple · NBA game (doors 6:00 PM)</div>
+            <div class="meta-sm">
+              7:00 PM · Delta Center · 301 W South Temple · NBA game (doors 6:00 PM)
+            </div>
             <div class="cta-sm">View tickets →</div>
           </div>
 
           <div class="event-row">
-            <div class="tag">Food &amp; drink</div>
+            <div class="tag">🍴 Food &amp; drink</div>
             <div class="title-sm">Downtown Night Market</div>
-            <div class="meta-sm">5:00 PM – 9:00 PM · Gallivan Center · Live music, food trucks, local vendors</div>
+            <div class="meta-sm">
+              5:00 PM – 9:00 PM · Gallivan Center · Live music, food trucks, local vendors
+            </div>
             <div class="cta-sm">Details &amp; directions →</div>
           </div>
 
           <div class="event-row">
-            <div class="tag">Outdoors</div>
+            <div class="tag">⛰ Outdoors</div>
             <div class="title-sm">Sunset Hike Meet-up</div>
-            <div class="meta-sm">6:30 PM · Bonneville Shoreline Trailhead · Casual local group hike</div>
+            <div class="meta-sm">
+              6:30 PM · Bonneville Shoreline Trailhead · Casual local group hike
+            </div>
             <div class="cta-sm">See meetup page →</div>
           </div>
 
@@ -660,9 +718,11 @@
           <div class="group-label">Later this week</div>
 
           <div class="event-row">
-            <div class="tag">Family</div>
+            <div class="tag">👨‍👩‍👧 Family</div>
             <div class="title-sm">Pioneer Park Farmers Market</div>
-            <div class="meta-sm">Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Coffee, produce, local stalls</div>
+            <div class="meta-sm">
+              Sat · 9:00 AM – 2:00 PM · 350 S 300 W · Coffee, produce, local stalls
+            </div>
             <div class="cta-sm">See vendor list →</div>
           </div>
         </div>
@@ -681,40 +741,56 @@
         <div class="list">
           <div class="biz-row">
             <div class="title-sm">Wasatch Roofing &amp; Exteriors</div>
-            <div class="meta-sm">Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage &amp; leaks</div>
+            <div class="meta-sm">
+              Roofing · Salt Lake City &amp; valley · Free inspections · Storm damage &amp; leaks
+            </div>
             <div class="cta-sm">Visit website →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Salt Lake HVAC Pros</div>
-            <div class="meta-sm">Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial</div>
+            <div class="meta-sm">
+              Heating &amp; cooling · 24/7 emergency service · Residential &amp; light commercial
+            </div>
             <div class="cta-sm">Book a service call →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Downtown Realty Group</div>
-            <div class="meta-sm">Real estate · Condos, townhomes, investment properties across Salt Lake County</div>
+            <div class="meta-sm">
+              Real estate · Condos, townhomes, investment properties across Salt Lake County
+            </div>
             <div class="cta-sm">See listings →</div>
           </div>
 
           <div class="biz-row">
             <div class="title-sm">Mountain View Landscaping</div>
-            <div class="meta-sm">Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs</div>
+            <div class="meta-sm">
+              Landscaping &amp; snow removal · Year-round maintenance · Residential &amp; HOAs
+            </div>
             <div class="cta-sm">Request a quote →</div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- NEIGHBORHOODS -->
+    <!-- NEIGHBORHOODS WELCOME STRIP -->
     <section class="strip-block" id="neighborhoods">
       <div class="strip-title">Neighborhoods at a glance</div>
       <div class="strip-sub">New here? Tap a neighborhood to see its vibe.</div>
       <div class="strip">
-        <div class="strip-pill"><b>Downtown</b> · Arena, nightlife, office towers.</div>
-        <div class="strip-pill"><b>Sugar House</b> · Parks, coffee, older homes.</div>
-        <div class="strip-pill"><b>9th &amp; 9th</b> · Restaurants, boutiques, walkable.</div>
-        <div class="strip-pill"><b>The Avenues</b> · Historic homes, hills, views.</div>
+        <a class="strip-pill" href="/neighborhoods#downtown">
+          <b>Downtown</b> · Arena, nightlife, office towers.
+        </a>
+        <a class="strip-pill" href="/neighborhoods#sugar-house">
+          <b>Sugar House</b> · Parks, coffee, older homes.
+        </a>
+        <a class="strip-pill" href="/neighborhoods#ninth-and-ninth">
+          <b>9th &amp; 9th</b> · Restaurants, boutiques, walkable.
+        </a>
+        <a class="strip-pill" href="/neighborhoods#avenues">
+          <b>The Avenues</b> · Historic homes, hills, views.
+        </a>
       </div>
     </section>
 
@@ -736,11 +812,11 @@
       day: "numeric"
     });
 
-    // Smooth scroll for hero buttons + header buttons + hero links
+    // Smooth scroll for hero / header buttons & links
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   </script>
 </body>
