@@ -51,7 +51,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(18px);
-      background: rgba(4,5,8,0.96);
+      background: rgba(4,5,8,0.95);
       border-bottom: 1px solid var(--border-subtle);
       margin: -20px -16px 22px;
     }
@@ -75,7 +75,7 @@
 
     .ticker {
       font-size: 12px;
-      color: #7c8299;          /* slightly dimmer than hero text */
+      color: #6f7690;          /* dimmer than hero text */
       padding: 6px 10px;
       border-radius: 999px;
       background: #05060a;
@@ -155,7 +155,7 @@
     .btn {
       border-radius: 999px;
       font-size: 12px;
-      padding: 9px 18px;
+      padding: 8px 14px;
       border: 1px solid transparent;
       background: transparent;
       cursor: pointer;
@@ -166,10 +166,16 @@
       color: var(--text-main);
       line-height: 1.4;
       transition:
-        background 0.15s ease,
-        border 0.15s ease,
-        transform 0.15s ease,
-        opacity 0.15s ease;
+        background-color 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease,
+        opacity 150ms ease;
+    }
+
+    /* header buttons slightly smaller than hero buttons */
+    .header-inner .btn {
+      font-size: 11px;
+      padding: 6px 12px;
     }
 
     .btn-primary {
@@ -207,13 +213,13 @@
       background: #0d1019; /* slightly brighter behind text for contrast */
       box-shadow: var(--shadow-soft);
       position: relative;
-      min-height: 240px;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 28px 22px 22px;
+      padding: 24px 22px 16px; /* reduced bottom padding so events peek above fold */
       isolation: isolate;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .hero::before {
@@ -267,7 +273,7 @@
       display: inline-flex;
       gap: 10px;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px; /* tight to the headline */
       border: 1px solid rgba(255,255,255,0.18);
       font-weight: 500;
     }
@@ -280,35 +286,36 @@
     }
 
     .hero h2 {
-      font-size: clamp(24px, 3vw, 30px);
+      font-size: clamp(23px, 2.7vw, 28px); /* slightly down for better above-fold fit */
       font-weight: 600;
       line-height: 1.25;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .hero p {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.6;
     }
 
     .hero-trust {
       font-size: 12px;
       color: #d9dbe7;
-      margin-bottom: 14px;
-      line-height: 1.6;
+      margin-bottom: 12px;
+      line-height: 1.5;
     }
 
     .hero-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .hero-actions .btn {
       font-size: 13px;
+      padding: 9px 18px; /* hero CTAs are clearly primary */
       min-width: 160px;
     }
 
@@ -355,13 +362,16 @@
       .hero-side-links {
         align-items: flex-start;
       }
+      .hero h2 {
+        font-size: 22px; /* prevent overflow on small screens */
+      }
     }
 
     /* ===== Main two columns (Events > Local Pros) ===== */
 
     .main-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr); /* 60/40 split */
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr); /* ~60/40 */
       gap: 20px;
     }
 
@@ -379,7 +389,7 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.7);
     }
 
-    /* Events column gets slightly lighter bg + thicker border */
+    /* Events column gets slightly lighter bg + thicker border so it wins */
     #events.section-card {
       background: #181c28;
       border-width: 2px;
@@ -443,17 +453,20 @@
     .biz-row {
       background: var(--card-soft);
       border-radius: var(--radius-md);
-      padding: 13px 13px 11px; /* slightly more padding */
+      padding: 13px 13px 11px; /* consistent padding all around */
       border: 1px solid rgba(255,255,255,0.12);
       font-size: 13px;
       display: flex;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease,
-                  border 0.1s ease, background 0.1s ease;
-      line-height: 1.5;
       position: relative; /* for featured badge */
+      line-height: 1.5;
+      transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease,
+        box-shadow 150ms ease;
     }
 
     .event-row.featured {
@@ -461,12 +474,12 @@
       background: radial-gradient(circle at left, var(--accent-soft), var(--card-soft));
     }
 
-    /* FEATURED badge – only appears on .event-row.featured */
+    /* FEATURED badge anchor top-left */
     .event-row.featured::before {
       content: "Featured";
       position: absolute;
-      top: 8px;
-      left: 10px;
+      top: 7px;
+      left: 9px;
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -478,15 +491,17 @@
     }
 
     .event-row:hover {
-      background: #222636;
+      background-color: #222636;
       border-color: var(--accent);
       box-shadow: 0 14px 32px rgba(0,0,0,0.8);
+      transform: translateY(-1px);
     }
 
     .biz-row:hover {
-      transform: translateY(-2px);
+      background-color: #202434;
       border-color: rgba(249,115,22,0.7);
       box-shadow: 0 14px 32px rgba(0,0,0,0.75);
+      transform: translateY(-1px);
     }
 
     .tag {
@@ -526,11 +541,11 @@
 
     .strip-block {
       margin-top: 26px;
-      background: #191d29; /* lighter strip */
+      background: #191d29; /* lighter strip than main page */
       border-radius: var(--radius-lg);
       padding: 14px 16px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.65);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.65); /* separation from two-column section */
     }
 
     .strip-title {
@@ -554,24 +569,30 @@
 
     .strip-pill {
       border-radius: 999px;
-      padding: 8px 15px; /* larger pill */
+      padding: 8px 16px; /* more horizontal padding */
       background: #10121a;
       border: 1px solid rgba(255,255,255,0.12);
       font-size: 12px;
       color: var(--text-muted);
       cursor: pointer;
-      transition: background 0.12s ease, border 0.12s ease, transform 0.12s ease;
-      font-weight: 500; /* easier to scan */
+      transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease;
+      font-weight: 500; /* easy to scan */
+      display: inline-flex;
+      flex-wrap: wrap;
     }
 
     .strip-pill b {
       color: var(--text-main);
       font-weight: 600;
+      margin-right: 4px;
     }
 
     .strip-pill:hover {
-      background: #212538;
-      border-color: rgba(249,115,22,0.7);
+      background-color: #212538;
+      border-color: rgba(249,115,22,0.9);
       transform: translateY(-1px);
     }
 
@@ -592,11 +613,25 @@
     footer a {
       color: var(--accent);
     }
+
+    /* ===== Mobile layout sanity ===== */
+    @media (max-width: 600px) {
+      .section-card {
+        padding: 14px 14px 12px;
+      }
+      .event-row,
+      .biz-row {
+        padding: 11px 11px 10px;
+      }
+      .page {
+        padding: 16px 12px 32px;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <!-- Ticker: visually recedes a bit vs hero -->
+    <!-- Ticker: dimmer so hero wins -->
     <div class="top-ticker">
       <div class="ticker-label">Live city ticker — Salt Lake City, Utah</div>
       <div class="ticker">
@@ -679,6 +714,7 @@
           <div class="section-title-wrap">
             <div class="section-title">Today in Salt Lake</div>
             <div class="section-sub">No plans yet? Start with these.</div>
+            <!-- optional count label could go here if wired to real data -->
           </div>
           <div class="section-link">Open full calendar →</div>
         </div>
@@ -780,16 +816,16 @@
       <div class="strip-sub">New here? Tap a neighborhood to see its vibe.</div>
       <div class="strip">
         <a class="strip-pill" href="/neighborhoods#downtown">
-          <b>Downtown</b> · Arena, nightlife, office towers.
+          <b>Downtown</b> Arena, nightlife, office towers.
         </a>
         <a class="strip-pill" href="/neighborhoods#sugar-house">
-          <b>Sugar House</b> · Parks, coffee, older homes.
+          <b>Sugar House</b> Parks, coffee, older homes.
         </a>
         <a class="strip-pill" href="/neighborhoods#ninth-and-ninth">
-          <b>9th &amp; 9th</b> · Restaurants, boutiques, walkable.
+          <b>9th &amp; 9th</b> Restaurants, boutiques, walkable.
         </a>
         <a class="strip-pill" href="/neighborhoods#avenues">
-          <b>The Avenues</b> · Historic homes, hills, views.
+          <b>The Avenues</b> Historic homes, hills, views.
         </a>
       </div>
     </section>
